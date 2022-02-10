@@ -1,3 +1,5 @@
+// 绘制类型
+const DrawType = ['link', 'bezierCurve', 'quadraticBezierCurve']
 
 /**
  * state: 判断是否可绘制状态
@@ -10,7 +12,8 @@ const initPoint = {
         x: null,
         y: null,
     },
-    point: []
+    point: [],
+    drawType: DrawType[0]
 }
 
 const drawPointObj = {
@@ -21,8 +24,23 @@ const canvas = document.querySelector('#canvas')
 const ctx = canvas.getContext('2d')
 ctx.strokeStyle = '#333'
 
+const drawDefault = () => {
+    console.info("绘制直线")
+    const { points:  pointsArray } = drawPointObj
+    const currList =  pointsArray.slice(0, 2)
+    const  [ , endPoint] = currList.reverse()
+    ctx.beginPath()
+    ctx.moveTo(drawPointObj.begin.x, drawPointObj.begin.y)
+    ctx.lineTo(endPoint.x, endPoint.y)
+    ctx.stroke()
+    ctx.closePath()
+    drawPointObj.pointsArray = currList
+    drawPointObj.begin = endPoint
+}
+
 // 一次贝塞尔曲线绘制
 const drawBezierCurve = () => {
+    console.info("绘制一次贝塞尔曲线")
     const { points:  pointsArray } = drawPointObj
     const currList =  pointsArray.slice(0, 3) // 获取计算贝塞尔曲线的三个点,正序
     const [
@@ -51,6 +69,7 @@ const drawBezierCurve = () => {
 
 // 二次贝塞尔曲线绘制
 const drawQuadraticBezierCurve = () => {
+    console.info("绘制二次贝塞尔曲线")
     const { points:  pointsArray } = drawPointObj
     const currList =  pointsArray.slice(0, 4) // 获取计算贝塞尔曲线的三个点,正序
     const [
@@ -95,9 +114,10 @@ const drawQuadraticBezierCurve = () => {
     drawPointObj.begin = endPoint
 }
 
+
 // 铅笔绘制
 const drawByPencil = (x, y) => {
-    const { points:  pointsArray } = drawPointObj
+    const { points:  pointsArray , drawType} = drawPointObj
     const {
         xBef,
         yBef,
@@ -110,15 +130,34 @@ const drawByPencil = (x, y) => {
         x, 
         y
     })
-    if (pointsArray?.length >= 4) {
-        drawQuadraticBezierCurve()
-    }   
+    switch(drawType) {
+        case 'bezierCurve': 
+            if (pointsArray?.length >= 3) {
+                drawBezierCurve()
+            }   
+            break
+        case 'quadraticBezierCurve':
+            if (pointsArray?.length >= 4) {
+                drawQuadraticBezierCurve()
+            }   
+            break
+        default:
+            drawDefault()
+            break
+    }
+  
 }
 
 const addSketchListener = () => {  
     document.addEventListener('mouseup', () => {
         drawPointObj.state = false
         drawPointObj.points = { ...initPoint?.point }
+        canvas.style.cursor = 'pointer' 
+    })
+
+    document.querySelector('#drawType')?.addEventListener('change',  (e) => {
+        const index = document.querySelector('#drawType').selectedIndex
+        drawPointObj.drawType = drawType[index].getAttribute('value')
     })
 
     canvas.addEventListener('mousedown', ({
@@ -128,6 +167,9 @@ const addSketchListener = () => {
         drawPointObj.state = true
         drawPointObj.points = [curr]
         drawPointObj.begin = curr
+        
+        // 更换光标
+        canvas.style.cursor = 'url(./static/pen.svg) 10 24,pointer'
     })
     
     canvas.addEventListener('mousemove', ({

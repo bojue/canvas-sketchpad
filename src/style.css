@@ -12,3 +12,44 @@ body {
     height: 100%;
     background: #fff;
 }
+
+.setting {
+    position: absolute;
+    width: 400px;
+    left: 50%;
+    top: 40px;
+    transform: translateX(-50%);
+    font-size: 14px;
+    z-index: 10;
+    text-align: center;
+}
+
+.setting label {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+select {
+    width: 200px;
+    padding: 5px 10px;
+    background:#fafdfe;  
+    height:40px;
+    line-height: 40px;  
+    width:380px;  
+    line-height:28px;  
+    border:1px solid #9bc0dd;  
+    -moz-border-radius:2px;  
+    -webkit-border-radius:2px;  
+    border-radius:2px; 
+}
+
+select:focus  {
+    outline: none;
+}
+
+select option {
+    height: 32px;
+    line-height: 32px;
+    padding: 0px 5px;
+    position: relative;
+}

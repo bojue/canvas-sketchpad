@@ -11,6 +11,14 @@
     <div id="canvas-sketch">
         <canvas id="canvas"></canvas>
     </div>
+    <div class="setting">
+        <label for="">画笔绘制方式：</label>
+        <select name="select" id="drawType">
+            <option value="link">直线</option>
+            <option value="bezierCurve">贝塞尔曲线</option>
+            <option value="quadraticBezierCurve">二次贝塞尔曲线</option>
+        </select>
+    </div>
     <script src="./src/resizeCanvas.js"></script>
     <script src="./src/sketchpad.js"></script>
 </body>
