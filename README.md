@@ -1,6 +1,6 @@
 # canvas-sketchpad
 
-基于二次贝塞尔曲线解决，鼠标绘制canvas存在的严重锯齿问题
+基于二次贝塞尔曲线，处理鼠标绘制canvas存在的严重锯齿问题
 
 [在线预览](https://bojue.github.io/canvas-sketchpad/)
 
