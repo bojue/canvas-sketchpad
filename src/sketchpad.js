@@ -54,8 +54,8 @@ const drawBezierCurve = () => {
         y: (startPoint.y + midPoint.y) / 2,
     }
     const endPoint = {
-        x: (midPoint.x + currentPoint.x) / 2,
-        y: (midPoint.y + currentPoint.y ) / 2,
+        x: (controlPoint.x + currentPoint.x) / 2,
+        y: (controlPoint.y + currentPoint.y ) / 2,
     }
 
     ctx.beginPath()
@@ -85,13 +85,13 @@ const drawQuadraticBezierCurve = () => {
         y: (point0.y + point1.y) / 2,
     }
     const control_2 = {
-        x: (point1.x + point2.x) / 2,
-        y: (point1.y + point2.y ) / 2,
+        x: (control_1.x + point2.x) / 2,
+        y: (control_1.y + point2.y ) / 2,
     }
 
     const control_3 = {
-        x: (point2.x + point3.x) / 2,
-        y: (point2.y + point3.y ) / 2,
+        x: (control_2.x + point3.x) / 2,
+        y: (control_2.y + point3.y ) / 2,
     }
 
     // 二次贝塞尔点位计算
@@ -101,8 +101,8 @@ const drawQuadraticBezierCurve = () => {
     }
 
     const endPoint = {
-        x: (control_1.x + control_2.x) / 2,
-        y: (control_1.y + control_2.y) / 2,
+        x: (controlPoint.x + control_2.x) / 2,
+        y: (controlPoint.y + control_2.y) / 2,
     }
 
     ctx.beginPath()
