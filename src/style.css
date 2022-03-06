@@ -53,3 +53,16 @@ select option {
     padding: 0px 5px;
     position: relative;
 }
+
+.github {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    right: 0;
+}
+
+.github img{
+    width: 100px;
+    height: 30px;
+    padding: 10px;
+}

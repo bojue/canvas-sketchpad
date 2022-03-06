@@ -5,21 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./src/style.css">
 </head>
 <body>
     <div id="canvas-sketch">
         <canvas id="canvas"></canvas>
+        <div class="github">
+            <a href="https://github.com/bojue/canvas-sketchpad" target="blank">
+                <img src="./static/github.svg" alt="github" title="github">
+            </a>
+        </div>
     </div>
-    <div class="setting">
-        <label for="">画笔绘制方式：</label>
-        <select name="select" id="drawType">
-            <option value="link">直线</option>
-            <option value="bezierCurve">贝塞尔曲线</option>
-            <option value="quadraticBezierCurve">二次贝塞尔曲线</option>
-        </select>
-    </div>
-    <script src="./src/resizeCanvas.js"></script>
+    <script src=
+    "https://cdn.jsdelivr.net/npm/underscore@latest/underscore-umd-min.js"> </script>
     <script src="./src/sketchpad.js"></script>
 </body>
 </html>

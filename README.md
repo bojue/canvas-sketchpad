@@ -4,8 +4,8 @@
 
 [在线预览](https://bojue.github.io/canvas-sketchpad/)
 
-可以选择不同绘制方案比对效果：
+画笔优化方案：
 
-- [x] 直线
-- [x] 贝塞尔曲线
-- [x] 二次贝塞尔曲线
+1. 二次贝塞尔曲线优化
+2. 节流
+3. devicePixelRatio(物理像素比) > 1时，处理画笔0.5模糊问题
